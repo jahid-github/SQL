@@ -5,7 +5,7 @@ It is used to perform CRUD operations: Create, Read, Update, and Delete.
 
 ---
 
-## Basic Commands
+**Basic Commands**
 
 ```sql
 -- List all databases
@@ -21,7 +21,7 @@ SHOW TABLES;
 
 ---
 
-# Database & Table Management
+**Database & Table Management**
 
 -- Create a new database
 CREATE DATABASE practice_db;
