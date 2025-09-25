@@ -54,7 +54,8 @@ DROP TABLE users;
 
 ---
 
-# Data Manipulation (CRUD)
+**Data Manipulation (CRUD)**
+
 -- Insert a row
 INSERT INTO users (first_name, last_name, email)
 VALUES ('Alice', 'Smith', 'alice@example.com');
@@ -82,7 +83,8 @@ WHERE first_name = 'Charlie';
 
 ---
 
-# Joins & Subqueries
+**Joins & Subqueries**
+
 -- Creating a second table
 CREATE TABLE posts (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -106,7 +108,8 @@ WHERE id IN (SELECT user_id FROM posts WHERE title LIKE '%SQL%');
 
 ---
 
-# Indexes, Alterations & Optimization
+**Indexes, Alterations & Optimization**
+
 -- Create index
 CREATE INDEX idx_user_email ON users(email);
 
@@ -126,7 +129,8 @@ EXPLAIN SELECT * FROM users WHERE email LIKE '%example%';
 
 ---
 
-# Stored Procedures & Functions
+**Stored Procedures & Functions**
+
 DELIMITER $$
 CREATE PROCEDURE GetUsersByAge(IN min_age INT)
 BEGIN
