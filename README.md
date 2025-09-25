@@ -1,23 +1,11 @@
-# MySQL
 # MySQL Practice & Cheat Sheet
-
 
 SQL is a programming language used to interect with relation databases.
 It is used to perform CRUD operations: Create, Read, Update, and Delete.
 
 ---
 
-## Table of Contents
-1. [Basic Commands](#basic-commands)
-2. [Database & Table Management](#database--table-management)
-3. [Data Manipulation (CRUD)](#data-manipulation-crud)
-4. [Joins & Subqueries](#joins--subqueries)
-5. [Indexes, Alterations & Optimization](#indexes-alterations--optimization)
-6. [Stored Procedures & Functions](#stored-procedures--functions)
-
----
-
-## 🔰 Basic Commands
+## Basic Commands
 
 ```sql
 -- List all databases
@@ -28,7 +16,11 @@ USE practice_db;
 
 -- Show tables in current database
 SHOW TABLES;
+
 ---
+
+---
+
 # Database & Table Management
 
 -- Create a new database
@@ -57,7 +49,11 @@ DESCRIBE users;
 
 -- Drop (delete) a table
 DROP TABLE users;
+
 ---
+
+---
+
 # Data Manipulation (CRUD)
 -- Insert a row
 INSERT INTO users (first_name, last_name, email)
@@ -81,7 +77,11 @@ WHERE first_name = 'Alice';
 -- Delete
 DELETE FROM users
 WHERE first_name = 'Charlie';
+
 ---
+
+---
+
 # Joins & Subqueries
 -- Creating a second table
 CREATE TABLE posts (
@@ -101,7 +101,11 @@ JOIN posts p
 -- Subquery example
 SELECT * FROM users 
 WHERE id IN (SELECT user_id FROM posts WHERE title LIKE '%SQL%');
+
 ---
+
+---
+
 # Indexes, Alterations & Optimization
 -- Create index
 CREATE INDEX idx_user_email ON users(email);
@@ -117,7 +121,11 @@ ALTER TABLE users MODIFY COLUMN age SMALLINT;
 
 -- Analyze a query (explain plan)
 EXPLAIN SELECT * FROM users WHERE email LIKE '%example%';
+
 ---
+
+---
+
 # Stored Procedures & Functions
 DELIMITER $$
 CREATE PROCEDURE GetUsersByAge(IN min_age INT)
@@ -130,4 +138,6 @@ DELIMITER ;
 
 -- Call procedure
 CALL GetUsersByAge(25);
+
 ---
+
