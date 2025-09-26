@@ -144,4 +144,13 @@ DELIMITER ;
 CALL GetUsersByAge(25);
 
 ---
-
+## Comments
+-- This is a single-line comment
+SHOW DATABASES;
+# Another single-line comment
+USE ecommerce_ai;
+/* 
+This is a multi-line comment
+It can span several lines
+*/
+SHOW TABLES;
