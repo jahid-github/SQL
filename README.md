@@ -1,8 +1,43 @@
 # MySQL Practice & Cheat Sheet
 
-SQL is a programming language used to interect with relation databases.
-It is used to perform CRUD operations: Create, Read, Update, and Delete.
+*SQL is a programming language used to interact with relational databases.*
+*It is used to perform CRUD operations: Create, Read, Update, and Delete.*
 
+**What is data?**
+*Data is raw, unprocessed facts and figures collected from different sources. It can be numbers, text, images, or symbols that by itself has no clear meaning until analyzed.*
+
+**What are the differences between data and information?**
+| **Data**               | **Information**                           |
+| ---------------------- | ----------------------------------------- |
+| Raw, unprocessed facts | Processed, organized, and meaningful data |
+| Example: `23, 45, 67`  | Example: "The average score is 45"        |
+| Has no direct meaning  | Has meaning, helps in decision-making     |
+| Input for processing   | Output of processing                      |
+
+“Data is the raw material, and information is the finished product that gives meaning to the data.”
+
+**What is a database engineer?**
+*A Database Engineer is a professional who designs, builds, and manages databases to make sure data is stored safely, organized efficiently, and retrieved quickly. They act like architects of data systems—ensuring the right structure, performance, and security so that businesses can make smart use of their information.*
+
+**Database engineer roles and responsibilities:**
+1. Design and Implementation
+2. Normalization
+3. Optimization
+4. Backup and Recovery
+5. Security
+6. Data Migration
+7. Integration
+8. Capacity Planning
+9. Documentation
+10. Testing and QA
+11. Reporting
+
+ACID
+Properties
+Atomicity
+Consistency
+Isolation
+Durability
 ---
 
 **Basic Commands**
