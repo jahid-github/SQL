@@ -31,13 +31,7 @@
 9. Documentation
 10. Testing and QA
 11. Reporting
-
-ACID
-Properties
-Atomicity
-Consistency
-Isolation
-Durability
+*ACID Properties: Atomicity, Consistency, Isolation, Durability*
 ---
 
 **Basic Commands**
