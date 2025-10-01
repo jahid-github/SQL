@@ -34,6 +34,27 @@
 
 *ACID Properties: Atomicity, Consistency, Isolation, Durability*
 
+## **Row-Oriented DB**
+
+* Stores data **row by row**.
+* Best for **transactions (OLTP-Online transaction processing)**.
+* **Fast for writes & updates**.
+* Slower for analytics (must read all columns).
+* Examples: **MySQL, PostgreSQL, Oracle**.
+
+## **Column-Oriented DB**
+
+* Stores data **column by column**.
+* Best for **analytics (OLAP-Online Analytical Processing)**.
+* **Fast for aggregations & queries** on few columns.
+* Slower for frequent writes.
+* Examples: **Redshift, BigQuery, ClickHouse**.
+
+✅ **Rule of thumb:**
+
+* **Row DB → good for many small transactions.**
+* **Column DB → good for analyzing large datasets.**
+
 ---
 
 **Basic Commands**
