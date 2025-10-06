@@ -19,6 +19,18 @@
 **What is a database engineer?**
 *A Database Engineer is a professional who designs, builds, and manages databases to make sure data is stored safely, organized efficiently, and retrieved quickly. They act like architects of data systems—ensuring the right structure, performance, and security so that businesses can make smart use of their information.*
 
+**Database:** *An organized collection of related data.*
+**Entities:** Real-world objects we store data about (e.g., Student, Course).
+**Relationships:** Associations between entities (e.g., John ENROLLED in Database course).
+**Database Management System (DBMS):** Software to create, store, update, and query databases.
+**Provides security, consistency, and controlled access.**
+*Examples: MySQL, PostgreSQL, Oracle, SQL Server.*
+
+**Manipulating a Database**
+- Querying → retrieve specific information (e.g., list all students in a course).
+- Updating → insert, delete, modify records. e.g., Add/delete or update student information.
+- Reporting → generate summaries and insights (e.g., average grades, monthly sales).
+
 **Database engineer roles and responsibilities:**
 1. Design and Implementation
 2. Normalization
