@@ -22,10 +22,8 @@
 - **Database:** *An organized collection of related data.*
 - **Entities:** Real-world objects we store data about (e.g., Student, Course).
 - **Relationships:** Associations between entities (e.g., John ENROLLED in Database course).
-- **Database Management System (DBMS):** Software to create, store, update, and query databases.
+- **Database Management System (DBMS):** Software to create, store, update, and query databases. **(Provides security, consistency, and controlled access.*Examples: MySQL, PostgreSQL, Oracle, SQL Server.*)**
 
-**Provides security, consistency, and controlled access.**
-*Examples: MySQL, PostgreSQL, Oracle, SQL Server.*
 
 **Manipulating a Database**
 - Querying → retrieve specific information (e.g., list all students in a course).
