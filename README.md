@@ -22,7 +22,7 @@
 - **Database:** *An organized collection of related data.*
 - **Entities:** Real-world objects we store data about (e.g., Student, Course).
 - **Relationships:** Associations between entities (e.g., John ENROLLED in Database course).
-- **Database Management System (DBMS):** Software to create, store, update, and query databases. **(Provides security, consistency, and controlled access.*Examples: MySQL, PostgreSQL, Oracle, SQL Server.*)**
+- **Database Management System (DBMS):** Software to create, store, update, and query databases. **(Provides security, consistency, and controlled access. *Examples: MySQL, PostgreSQL, Oracle, SQL Server.*)**
 
 
 **Manipulating a Database**
@@ -65,6 +65,22 @@
 
 * **Row DB → good for many small transactions.**
 * **Column DB → good for analyzing large datasets.**
+
+**SQL Commands: DDL vs DML**
+- DDL – Data Definition Language
+- Defines structure of the database (schema).
+- Commands:
+          - CREATE → make new tables, databases
+          - ALTER → change table (add/remove columns)
+          - DROP → delete tables or databases
+- DML – Data Manipulation Language
+- Deals with the data inside the tables.
+- Commands:
+          - INSERT → add new records
+          - UPDATE → modify existing records
+          - DELETE → remove records
+          - SELECT → query/retrieve data
+
 
 ---
 
