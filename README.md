@@ -122,7 +122,8 @@ A **data model** in DBMS is a framework used to define how data is structured, s
 4. No universal data manipulation language  
 5. Good modeling needs knowledge of physical storage constraints   
 
-**[ER Diagrams Guide](https://nulab.com/learn/software-development/entity-relationship-diagrams-guide/?utm_source=chatgpt.com))**
+**[ER Diagrams Guide](https://nulab.com/learn/software-development/entity-relationship-diagrams-guide/?utm_source=chatgpt.com)**
+**[Create Diagram with ERDPlus](https://erdplus.com/)**
 
 ## **Row-Oriented DB**
 
