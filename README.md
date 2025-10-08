@@ -140,6 +140,32 @@ A **data model** in DBMS is a framework used to define how data is structured, s
 
 **[ER Diagrams Guide](https://nulab.com/learn/software-development/entity-relationship-diagrams-guide/?utm_source=chatgpt.com)**
 **[Create Diagram with ERDPlus](https://erdplus.com/)**
+### ER-to-Relational Mapping Algorithm
+- Step 1: Mapping of Regular Entity Types 
+- Step 2: Mapping of Weak Entity Types 
+- Step 3: Mapping of Binary 1:1 Relation Types 
+- Step 4: Mapping of Binary 1:N Relationship Types
+- Step 5: Mapping of Binary M:N Relationship Types
+- Step 6: Mapping of Multivalued attributes
+
+## Relational Integrity Constraints Structured Query Language (SQL)
+*Constraints are conditions that must be true on all valid tuples. These conditions are called Relational Integrity Constraints. 
+There are three main types of constraints:* 
+1. Key constraints 
+- Every relation in the database should have at least one set of attributes which defines a tuple uniquely. Those set of attributes is called key.
+- If there are more than one, these are called candidate keys. 
+- Primary Key: A candidate key that is chosen to uniquely identify each tuple in the relation. 
+- The primary key attributes are underlined. 
+- Choose as primary key the smallest of the candidate keys (in terms of size). 
+- A primary key has two properties: It should be unique for all tuples and It can’t have NULL values.
+
+2. Entity integrity constraints 
+- Entity Integrity: The primary key attributes of each relation cannot have null values in any tuple of a relation. *(No attribute participating in the primary key is allowed to accept null values.)*
+- Note: Other attributes of the relation may be similarly constrained to disallow null values, even though they are not members of the primary key. 
+
+3. Referential integrity constraints 
+*(These constraints are checked before performing any operation (insert, delete and update) in database. If there is a violation in any of constraints, operation will fail.)*
+
 
 ## **Row-Oriented DB**
 
