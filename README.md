@@ -51,7 +51,7 @@
 - 
 2. Database Designers - Decide what data will be stored and how it will be organized.
 *Responsibilities:*
-- Define tables, relationships, constraints.
+- Define tables, relationships, and constraints.
 - Design the ER model and schema.
 - Ensure the database supports business requirements.
 
@@ -91,6 +91,10 @@
 ### DBMS Data Models
 
 A **data model** in DBMS is a framework used to define how data is structured, stored, and managed. It helps in bridging the gap between real-world data requirements and the internal structure of a database.
+**Purpose of Data Modeling**
+- To understand the data requirements of a system.
+- To define entities (things), their attributes (properties), and relationships (connections).
+
 
 **Layers of Data Modeling**
 
@@ -121,6 +125,18 @@ A **data model** in DBMS is a framework used to define how data is structured, s
 3. Structural changes can ripple across the system  
 4. No universal data manipulation language  
 5. Good modeling needs knowledge of physical storage constraints   
+
+**Degree of a Relationship**
+*Definition: Number of entity types that participate in a relationship.*
+- Unary (degree 1): Relationship within the same entity (e.g., Employee manages Employee).
+- Binary (degree 2): Between two entities (e.g., Student enrolls in Course).
+- Ternary (degree 3): Among three entities (e.g., Doctor prescribes Medicine to Patient).
+
+**Cardinality in Relationships**
+*Definition: Specifies how many instances of one entity can/must be associated with instances of another entity.*
+- One-to-One (1:1): Each Student has one Locker.
+- One-to-Many (1:N): One Instructor teaches many Courses.
+- Many-to-Many (M:N): Students enroll in many Courses, and each Course has many Students.
 
 **[ER Diagrams Guide](https://nulab.com/learn/software-development/entity-relationship-diagrams-guide/?utm_source=chatgpt.com)**
 **[Create Diagram with ERDPlus](https://erdplus.com/)**
