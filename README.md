@@ -44,32 +44,28 @@
 **- Actors on the Scene (directly interact with the database)**
   
 1. Database administrators - Control and monitor database use.
-
 *Responsibilities:*
 - Authorize access (who can read/write).
-  
 - Set up backups and recovery.
-  
 - Ensure security.
-
+- 
 2. Database Designers - Decide what data will be stored and how it will be organized.
-
 *Responsibilities:*
-
 - Define tables, relationships, constraints.
-  
 - Design the ER model and schema.
-  
 - Ensure the database supports business requirements.
 
 3. End-Users - The largest group — people who actually use the data.
-
-For example:
-
+*For example:*
 - Naïve users → use standard applications (e.g., bank clerk).
 - Sophisticated users → Sophisticated users like engineers or analysts interact directly with the database using SQL queries.
 
 **- Workers Behind the Scene (don’t use the data directly, but make DBMS possible)**
+
+- DBMS system developers → build the database engine itself.
+- Tool developers → build utilities like MySQL Workbench
+- Computer system operators → manage servers, hardware, and OS where DB runs.
+- Maintenance staff → update, optimize DBMS software.
 
 
 **Manipulating a Database**
@@ -91,6 +87,42 @@ For example:
 11. Reporting
 
 *ACID Properties: Atomicity, Consistency, Isolation, Durability*
+
+### DBMS Data Models
+
+A **data model** in DBMS is a framework used to define how data is structured, stored, and managed. It helps in bridging the gap between real-world data requirements and the internal structure of a database.
+
+**Layers of Data Modeling**
+
+| Level | Purpose | Examples / Features |
+|---|---|---|
+| **Conceptual (High-level)** | Captures business semantics & requirements | Entity-Relationship (ER) diagram, entities, attributes, relationships |
+| **Logical (Representational)** | Defines the logical structure independent of DBMS | Relational model: tables, relational algebra/calculus |
+| **Physical** | Specifies how data is stored in the DBMS | Tables, indexes, data types, storage, file structures, access paths |
+
+**Other Data Models**
+
+- **Hierarchical Model** — tree-like parent-child data structure  
+- **Network Model** — supports many-to-many relationships  
+- **Object-Oriented Model** — data as objects with attributes and methods  
+- **Float Model** — 2D array representation, limited scalability  
+- **Context Model** — composite of multiple models  
+- **Semi-Structured Model** — flexible schema (e.g. XML, JSON)
+
+**Advantages:**
+1. Accurate and clear representation of data  
+2. Helps avoid redundancy, identify missing data  
+3. Supports constraints, relationships, and security  
+4. Provides a roadmap for implementing the database  
+
+**Disadvantages:**
+1. Complexity in large databases  
+2. Requires deep DBMS / storage knowledge  
+3. Structural changes can ripple across the system  
+4. No universal data manipulation language  
+5. Good modeling needs knowledge of physical storage constraints   
+
+**[ER Diagrams Guide](https://nulab.com/learn/software-development/entity-relationship-diagrams-guide/?utm_source=chatgpt.com))**
 
 ## **Row-Oriented DB**
 
