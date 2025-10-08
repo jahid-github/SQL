@@ -3,10 +3,10 @@
 *SQL is a programming language used to interact with relational databases.*
 *It is used to perform CRUD operations: Create, Read, Update, and Delete.*
 
-**What is data?**
+### **What is data?**
 *Data is raw, unprocessed facts and figures collected from different sources. It can be numbers, text, images, or symbols that by itself has no clear meaning until analyzed.*
 
-**What are the differences between data and information?**
+### **What are the differences between data and information?**
 | **Data**               | **Information**                           |
 | ---------------------- | ----------------------------------------- |
 | Raw, unprocessed facts | Processed, organized, and meaningful data |
@@ -16,13 +16,60 @@
 
 “Data is the raw material, and information is the finished product that gives meaning to the data.”
 
-**What is a database engineer?**
+### **What is a database engineer?**
+
 *A Database Engineer is a professional who designs, builds, and manages databases to make sure data is stored safely, organized efficiently, and retrieved quickly. They act like architects of data systems—ensuring the right structure, performance, and security so that businesses can make smart use of their information.*
 
 - **Database:** *An organized collection of related data.*
 - **Entities:** Real-world objects we store data about (e.g., Student, Course).
 - **Relationships:** Associations between entities (e.g., John ENROLLED in Database course).
 - **Database Management System (DBMS):** Software to create, store, update, and query databases. **(Provides security, consistency, and controlled access. *Examples: MySQL, PostgreSQL, Oracle, SQL Server.*)**
+
+### **Types of Databases**
+1. Relational Databases (RDBMS)
+- Data stored in tables (rows & columns).
+- Use SQL for querying.
+- Examples: MySQL, PostgreSQL, Oracle.
+- Used in banking and university systems.
+
+2. NoSQL (Not Only SQL) Databases – non-relational
+- Flexible, schema-less, handles big & unstructured data.
+- Data not stored in tables.
+- Data can be stored as: documents, graphs, key-value pairs
+- Used in social media, recommendation systems
+
+### **Database Users**
+*Database users can be broadly grouped into two categories:*
+
+**- Actors on the Scene (directly interact with the database)**
+  
+1. Database administrators - Control and monitor database use.
+
+*Responsibilities:*
+- Authorize access (who can read/write).
+  
+- Set up backups and recovery.
+  
+- Ensure security.
+
+2. Database Designers - Decide what data will be stored and how it will be organized.
+
+*Responsibilities:*
+
+- Define tables, relationships, constraints.
+  
+- Design the ER model and schema.
+  
+- Ensure the database supports business requirements.
+
+3. End-Users - The largest group — people who actually use the data.
+
+For example:
+
+- Naïve users → use standard applications (e.g., bank clerk).
+- Sophisticated users → Sophisticated users like engineers or analysts interact directly with the database using SQL queries.
+
+**- Workers Behind the Scene (don’t use the data directly, but make DBMS possible)**
 
 
 **Manipulating a Database**
