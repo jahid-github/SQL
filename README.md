@@ -189,10 +189,6 @@ There are three main types of constraints:*
 * **Column DB → good for analyzing large datasets.**
 
 # SQL Cheat Sheet – MySQL 🆚 SQL Server
-
-This README compares common SQL tasks in **MySQL** and **Microsoft SQL Server** side by side.  
-Source: your course SQL cheat sheet (DML, DDL, joins, aggregates, transactions) :contentReference[oaicite:0]{index=0}
-
 > ✅ Use this when you switch between MySQL (XAMPP / MariaDB / cloud MySQL) and SQL Server (SSMS / Azure SQL).
 
 ---
