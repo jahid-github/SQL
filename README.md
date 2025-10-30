@@ -188,170 +188,426 @@ There are three main types of constraints:*
 * **Row DB → good for many small transactions.**
 * **Column DB → good for analyzing large datasets.**
 
-**SQL Commands: DDL vs DML**
-- DDL – Data Definition Language
-- Defines structure of the database (schema).
-- Commands:
-          - CREATE → make new tables, databases
-          - ALTER → change table (add/remove columns)
-          - DROP → delete tables or databases
-- DML – Data Manipulation Language
-- Deals with the data inside the tables.
-- Commands:
-          - INSERT → add new records
-          - UPDATE → modify existing records
-          - DELETE → remove records
-          - SELECT → query/retrieve data
+# SQL Cheat Sheet – MySQL 🆚 SQL Server
 
+This README compares common SQL tasks in **MySQL** and **Microsoft SQL Server** side by side.  
+Source: your course SQL cheat sheet (DML, DDL, joins, aggregates, transactions) :contentReference[oaicite:0]{index=0}
+
+> ✅ Use this when you switch between MySQL (XAMPP / MariaDB / cloud MySQL) and SQL Server (SSMS / Azure SQL).
 
 ---
 
-**Basic Commands**
+## 1. Connect / Select Database
 
-```sql
--- List all databases
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- show databases
 SHOW DATABASES;
 
--- Select a database to use
-USE practice_db;
+-- create database
+CREATE DATABASE school;
 
--- Show tables in current database
-SHOW TABLES;
+-- use database
+USE school;
+``` | ```sql
+-- show databases
+SELECT name FROM sys.databases;
+
+-- create database
+CREATE DATABASE school;
+
+-- use database
+USE school;
+``` |
 
 ---
 
----
+## 2. Create Table
 
-**Database & Table Management**
-
--- Create a new database
-CREATE DATABASE practice_db;
-
--- Use a database
-USE practice_db;
-
--- Drop (delete) a database
-DROP DATABASE practice_db;
-
--- Create a table
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(100),
-  last_name VARCHAR(100),
-  email VARCHAR(100),
-  register_date DATETIME DEFAULT CURRENT_TIMESTAMP
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+CREATE TABLE employees (
+  employee_id INT PRIMARY KEY AUTO_INCREMENT,
+  first_name  VARCHAR(50),
+  last_name   VARCHAR(50),
+  age         INT
 );
-
--- Show tables in the current database
-SHOW TABLES;
-
--- Describe a table (structure)
-DESCRIBE users;
-
--- Drop (delete) a table
-DROP TABLE users;
-
----
-
----
-
-**Data Manipulation (CRUD)**
-
--- Insert a row
-INSERT INTO users (first_name, last_name, email)
-VALUES ('Alice', 'Smith', 'alice@example.com');
-
--- Insert multiple rows
-INSERT INTO users (first_name, last_name, email)
-VALUES 
-  ('Bob', 'Johnson', 'bob@example.com'),
-  ('Charlie', 'Lee', 'charlie@example.com');
-
--- Select / read
-SELECT * FROM users;
-SELECT first_name, last_name FROM users WHERE email LIKE '%@example.com';
-
--- Update
-UPDATE users
-SET last_name = 'Brown'
-WHERE first_name = 'Alice';
-
--- Delete
-DELETE FROM users
-WHERE first_name = 'Charlie';
-
----
-
----
-
-**Joins & Subqueries**
-
--- Creating a second table
-CREATE TABLE posts (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT,
-  title VARCHAR(200),
-  body TEXT,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+``` | ```sql
+CREATE TABLE employees (
+  employee_id INT IDENTITY(1,1) PRIMARY KEY,
+  first_name  VARCHAR(50),
+  last_name   VARCHAR(50),
+  age         INT
 );
+``` |
 
--- Inner Join example
-SELECT u.first_name, u.last_name, p.title
-FROM users u
-JOIN posts p 
-  ON u.id = p.user_id;
-
--- Subquery example
-SELECT * FROM users 
-WHERE id IN (SELECT user_id FROM posts WHERE title LIKE '%SQL%');
+🔎 Difference:  
+- **MySQL** → `AUTO_INCREMENT`  
+- **SQL Server** → `IDENTITY(1,1)`
 
 ---
 
+## 3. Alter / Drop / Truncate
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- add column
+ALTER TABLE employees
+ADD email VARCHAR(100);
+
+-- drop column
+ALTER TABLE employees
+DROP COLUMN email;
+
+-- delete only rows
+TRUNCATE TABLE employees;
+
+-- drop table
+DROP TABLE employees;
+``` | ```sql
+-- add column
+ALTER TABLE employees
+ADD email VARCHAR(100);
+
+-- drop column
+ALTER TABLE employees
+DROP COLUMN email;
+
+-- delete only rows
+TRUNCATE TABLE employees;
+
+-- drop table
+DROP TABLE employees;
+``` |
+
+(From PDF DDL section) :contentReference[oaicite:1]{index=1}
+
 ---
 
-**Indexes, Alterations & Optimization**
+## 4. Insert / Update / Delete (DML)
 
--- Create index
-CREATE INDEX idx_user_email ON users(email);
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- insert
+INSERT INTO employees (first_name, last_name, age)
+VALUES ('Mary', 'Doe', 28);
 
--- Drop index
-DROP INDEX idx_user_email ON users;
+-- update
+UPDATE employees
+SET age = 29
+WHERE employee_id = 1;
 
--- Add a new column
-ALTER TABLE users ADD age INT;
+-- delete
+DELETE FROM employees
+WHERE employee_id = 1;
+``` | ```sql
+-- insert
+INSERT INTO employees (first_name, last_name, age)
+VALUES ('Mary', 'Doe', 28);
 
--- Modify a column
-ALTER TABLE users MODIFY COLUMN age SMALLINT;
+-- update
+UPDATE employees
+SET age = 29
+WHERE employee_id = 1;
 
--- Analyze a query (explain plan)
-EXPLAIN SELECT * FROM users WHERE email LIKE '%example%';
+-- delete
+DELETE FROM employees
+WHERE employee_id = 1;
+``` |
+
+(From PDF DML section) :contentReference[oaicite:2]{index=2}
 
 ---
 
+## 5. Select / Filter / Sort / Group
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- basic select
+SELECT first_name, last_name
+FROM employees;
+
+-- filter
+SELECT *
+FROM employees
+WHERE age > 30;
+
+-- order
+SELECT *
+FROM employees
+ORDER BY age DESC;
+
+-- group
+SELECT age, COUNT(*) AS total
+FROM employees
+GROUP BY age
+HAVING COUNT(*) > 1;
+``` | ```sql
+-- basic select
+SELECT first_name, last_name
+FROM employees;
+
+-- filter
+SELECT *
+FROM employees
+WHERE age > 30;
+
+-- order
+SELECT *
+FROM employees
+ORDER BY age DESC;
+
+-- group
+SELECT age, COUNT(*) AS total
+FROM employees
+GROUP BY age
+HAVING COUNT(*) > 1;
+``` |
+
+(From PDF Querying + GROUP BY + HAVING) :contentReference[oaicite:3]{index=3}
+
 ---
 
-**Stored Procedures & Functions**
+## 6. Joins
 
-DELIMITER $$
-CREATE PROCEDURE GetUsersByAge(IN min_age INT)
-BEGIN
-  SELECT first_name, last_name, age
-  FROM users
-  WHERE age >= min_age;
-END $$
-DELIMITER ;
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- inner join
+SELECT e.first_name, d.department_name
+FROM employees e
+INNER JOIN departments d
+  ON e.department_id = d.id;
 
--- Call procedure
-CALL GetUsersByAge(25);
+-- left join
+SELECT e.first_name, d.department_name
+FROM employees e
+LEFT JOIN departments d
+  ON e.department_id = d.id;
+``` | ```sql
+-- inner join
+SELECT e.first_name, d.department_name
+FROM employees e
+INNER JOIN departments d
+  ON e.department_id = d.id;
+
+-- left join
+SELECT e.first_name, d.department_name
+FROM employees e
+LEFT JOIN departments d
+  ON e.department_id = d.id;
+``` |
+
+📌 Note: SQL Server supports `FULL OUTER JOIN` directly; MySQL emulates it with `UNION` (like in PDF). :contentReference[oaicite:4]{index=4}
 
 ---
-## Comments
--- This is a single-line comment
-SHOW DATABASES;
-# Another single-line comment
-USE ecommerce_ai;
-/* 
-This is a multi-line comment
-It can span several lines
-*/
+
+## 7. String Functions
+
+| MySQL (typical) | SQL Server (T-SQL) |
+|-----------------|--------------------|
+| ```sql
+SELECT
+  CONCAT(first_name, ' ', last_name) AS full_name,
+  UPPER(first_name) AS upper_name,
+  LOWER(last_name) AS lower_name,
+  LENGTH(first_name) AS name_len
+FROM employees;
+``` | ```sql
+SELECT
+  CONCAT(first_name, ' ', last_name) AS full_name,
+  UPPER(first_name) AS upper_name,
+  LOWER(last_name) AS lower_name,
+  LEN(first_name) AS name_len
+FROM employees;
+``` |
+
+📝 Differences:
+- MySQL → `LENGTH()` / `CHAR_LENGTH()`
+- SQL Server → `LEN()`
+- Common ones from PDF: `CONCAT`, `SUBSTRING`, `REPLACE`, `TRIM` :contentReference[oaicite:5]{index=5}
+
+---
+
+## 8. Date & Time
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+SELECT
+  CURRENT_DATE()      AS today,
+  CURRENT_TIME()      AS now_time,
+  CURRENT_TIMESTAMP() AS now_ts,
+  DATE_ADD('2025-10-30', INTERVAL 1 DAY) AS t_plus_1,
+  DATEDIFF('2025-10-30', '2025-10-29')   AS diff_days;
+``` | ```sql
+SELECT
+  CAST(GETDATE() AS date)       AS today,
+  CAST(GETDATE() AS time)       AS now_time,
+  GETDATE()                     AS now_dt,
+  DATEADD(DAY, 1, '2025-10-30') AS t_plus_1,
+  DATEDIFF(DAY, '2025-10-29', '2025-10-30') AS diff_days;
+``` |
+
+(From PDF date/time section, adapted to SQL Server) :contentReference[oaicite:6]{index=6}
+
+---
+
+## 9. Conditional Logic
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+SELECT
+  total_amount,
+  CASE
+    WHEN total_amount > 1000 THEN 'High'
+    WHEN total_amount > 500  THEN 'Medium'
+    ELSE 'Low'
+  END AS order_status,
+  IF(total_amount > 500, 'VIP', 'REGULAR') AS cust_type
+FROM orders;
+``` | ```sql
+SELECT
+  total_amount,
+  CASE
+    WHEN total_amount > 1000 THEN 'High'
+    WHEN total_amount > 500  THEN 'Medium'
+    ELSE 'Low'
+  END AS order_status,
+  IIF(total_amount > 500, 'VIP', 'REGULAR') AS cust_type
+FROM orders;
+``` |
+
+📌 PDF shows `CASE`, `IF()`, `COALESCE()` – in SQL Server `IIF()` plays a similar role. :contentReference[oaicite:7]{index=7}
+
+---
+
+## 10. Transactions
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+START TRANSACTION;
+
+INSERT INTO employees (first_name, age)
+VALUES ('Alice', 30);
+
+UPDATE products
+SET price = 25
+WHERE category = 'Electronics';
+
+COMMIT;
+-- or
+ROLLBACK;
+``` | ```sql
+BEGIN TRANSACTION;
+
+INSERT INTO employees (first_name, age)
+VALUES ('Alice', 30);
+
+UPDATE products
+SET price = 25
+WHERE category = 'Electronics';
+
+COMMIT;
+-- or
+ROLLBACK;
+``` |
+
+(From PDF transaction control) :contentReference[oaicite:8]{index=8}
+
+---
+
+## 11. Users / Permissions (basic)
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- create user (simple)
+CREATE USER 'islam'@'%' IDENTIFIED BY 'StrongPass123';
+
+-- grant
+GRANT SELECT, INSERT
+ON school.*
+TO 'islam'@'%';
+
+FLUSH PRIVILEGES;
+``` | ```sql
+-- create login
+CREATE LOGIN islam
+WITH PASSWORD = 'StrongPass123';
+
+-- create user in db
+USE school;
+CREATE USER islam FOR LOGIN islam;
+
+-- grant
+GRANT SELECT, INSERT
+ON dbo.employees TO islam;
+``` |
+
+PDF shows generic `GRANT` / `REVOKE` which maps to both. :contentReference[oaicite:9]{index=9}
+
+---
+
+## 12. Show Tables / Describe Table
+
+| MySQL | SQL Server |
+|-------|------------|
+| ```sql
+-- show all tables
 SHOW TABLES;
+
+-- describe structure
+DESCRIBE employees;
+``` | ```sql
+-- list tables
+SELECT * FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE';
+
+-- describe columns
+EXEC sp_help 'dbo.employees';
+-- or
+SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'employees';
+``` |
+
+---
+
+## 13. Extras for GitHub
+
+- ✅ Add sample dump files: `mysql/init.sql`, `sqlserver/init.sql`
+- ✅ Add Docker compose if you want to run both
+- ✅ Add screenshot of SSMS + MySQL Workbench
+
+---
+
+## 14. Quick Reference (from PDF)
+
+- **DML**: `SELECT`, `INSERT`, `UPDATE`, `DELETE` :contentReference[oaicite:10]{index=10}
+- **DDL**: `CREATE`, `ALTER`, `DROP`, `TRUNCATE` :contentReference[oaicite:11]{index=11}
+- **JOINS**: `INNER`, `LEFT`, `RIGHT`, `FULL` (MySQL via `UNION`) :contentReference[oaicite:12]{index=12}
+- **AGG**: `COUNT`, `SUM`, `AVG`, `MIN`, `MAX` :contentReference[oaicite:13]{index=13}
+- **TRANSACTIONS**: `COMMIT`, `ROLLBACK`, `SAVEPOINT` :contentReference[oaicite:14]{index=14}
+
+---
+
+## 15. Repo Structure (suggested)
+
+```text
+.
+├── README.md          # this file
+├── mysql
+│   ├── init.sql       # create db + tables + sample data
+│   └── queries.sql    # practice queries
+└── sqlserver
+    ├── init.sql
+    └── queries.sql
+
