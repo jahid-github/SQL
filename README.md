@@ -44,19 +44,25 @@
 **- Actors on the Scene (directly interact with the database)**
   
 1. Database administrators - Control and monitor database use.
+
 *Responsibilities:*
+
 - Authorize access (who can read/write).
 - Set up backups and recovery.
 - Ensure security.
-- 
+  
 2. Database Designers - Decide what data will be stored and how it will be organized.
+
 *Responsibilities:*
+
 - Define tables, relationships, and constraints.
 - Design the ER model and schema.
 - Ensure the database supports business requirements.
 
 3. End-Users - The largest group — people who actually use the data.
+
 *For example:*
+
 - Naïve users → use standard applications (e.g., bank clerk).
 - Sophisticated users → Sophisticated users like engineers or analysts interact directly with the database using SQL queries.
 
