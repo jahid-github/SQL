@@ -194,422 +194,48 @@ There are three main types of constraints:*
 * **Row DB → good for many small transactions.**
 * **Column DB → good for analyzing large datasets.**
 
-# SQL Cheat Sheet – MySQL 🆚 SQL Server
-> ✅ Use this when you switch between MySQL (XAMPP / MariaDB / cloud MySQL) and SQL Server (SSMS / Azure SQL).
+# 🧮 T-SQL Data Types
+
+## 📘 What Is a Data Type?
+> A **data type** defines the *nature of data* that can be stored in database objects — such as tables, variables, and functions.
 
 ---
 
-## 1. Connect / Select Database
+## 📊 Categories of SQL Data Types
 
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- show databases
-SHOW DATABASES;
-
--- create database
-CREATE DATABASE school;
-
--- use database
-USE school;
-``` | ```sql
--- show databases
-SELECT name FROM sys.databases;
-
--- create database
-CREATE DATABASE school;
-
--- use database
-USE school;
-``` |
+| **Category** | **Data Types** | **Description / Use Case** |
+|---------------|----------------|-----------------------------|
+| **Exact Numerics** | `tinyint`, `smallint`, `int`, `bigint`, `bit`, `decimal`, `numeric`, `money`, `smallmoney` | Used for storing integer or fixed-precision numeric values. `bit` holds Boolean (0/1) data. |
+| **Approximate Numerics** | `float`, `real` | Store floating-point or approximate numeric values where precision may vary. |
+| **Date and Time** | `date`, `time`, `datetime2`, `datetimeoffset`, `datetime`, `smalldatetime` | Used to store calendar dates and times with or without time zone information. |
+| **Unicode Character Strings** | `nchar`, `nvarchar`, `ntext` | Store text data that supports international (Unicode) characters. Use `nvarchar` for flexible length. |
+| **Character Strings** | `char`, `varchar`, `text` | Store non-Unicode text. `char` is fixed length, `varchar` is variable length, and `text` for long text (deprecated). |
+| **Binary Strings** | `binary`, `varbinary`, `image` | Store raw binary data such as files, images, or encrypted values. |
+| **Other Data Types** | `cursor`, `geography`, `geometry`, `hierarchyid`, `json`, `vector`, `rowversion`, `sql_variant`, `table`, `uniqueidentifier`, `xml` | Specialized data types for advanced use: spatial data (`geography`, `geometry`), hierarchical data (`hierarchyid`), JSON documents, or XML. |
+| **Spatial Types** | `geography`, `geometry` | Represent spatial (location, shape, coordinates) data. |
 
 ---
 
-## 2. Create Table
+## 🧠 Notes
 
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
-CREATE TABLE employees (
-  employee_id INT PRIMARY KEY AUTO_INCREMENT,
-  first_name  VARCHAR(50),
-  last_name   VARCHAR(50),
-  age         INT
+- **Exact numerics** → for financial or count data.  
+- **Approximate numerics** → for scientific or measurement data.  
+- **Character / Unicode** → for text fields (use Unicode for multi-language).  
+- **Binary** → for multimedia or encoded data.  
+- **Spatial** → for maps, GIS, or location tracking.  
+- **JSON/XML** → for semi-structured or hierarchical data storage.
+
+---
+
+### 📚 Example
+
+```sql
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName NVARCHAR(100),
+    Price DECIMAL(10,2),
+    CreatedOn DATETIME2,
+    ProductImage VARBINARY(MAX)
 );
-``` | ```sql
-CREATE TABLE employees (
-  employee_id INT IDENTITY(1,1) PRIMARY KEY,
-  first_name  VARCHAR(50),
-  last_name   VARCHAR(50),
-  age         INT
-);
-``` |
 
-🔎 Difference:  
-- **MySQL** → `AUTO_INCREMENT`  
-- **SQL Server** → `IDENTITY(1,1)`
-
----
-
-## 3. Alter / Drop / Truncate
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- add column
-ALTER TABLE employees
-ADD email VARCHAR(100);
-
--- drop column
-ALTER TABLE employees
-DROP COLUMN email;
-
--- delete only rows
-TRUNCATE TABLE employees;
-
--- drop table
-DROP TABLE employees;
-``` | ```sql
--- add column
-ALTER TABLE employees
-ADD email VARCHAR(100);
-
--- drop column
-ALTER TABLE employees
-DROP COLUMN email;
-
--- delete only rows
-TRUNCATE TABLE employees;
-
--- drop table
-DROP TABLE employees;
-``` |
-
-(From PDF DDL section) :contentReference[oaicite:1]{index=1}
-
----
-
-## 4. Insert / Update / Delete (DML)
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- insert
-INSERT INTO employees (first_name, last_name, age)
-VALUES ('Mary', 'Doe', 28);
-
--- update
-UPDATE employees
-SET age = 29
-WHERE employee_id = 1;
-
--- delete
-DELETE FROM employees
-WHERE employee_id = 1;
-``` | ```sql
--- insert
-INSERT INTO employees (first_name, last_name, age)
-VALUES ('Mary', 'Doe', 28);
-
--- update
-UPDATE employees
-SET age = 29
-WHERE employee_id = 1;
-
--- delete
-DELETE FROM employees
-WHERE employee_id = 1;
-``` |
-
-(From PDF DML section) :contentReference[oaicite:2]{index=2}
-
----
-
-## 5. Select / Filter / Sort / Group
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- basic select
-SELECT first_name, last_name
-FROM employees;
-
--- filter
-SELECT *
-FROM employees
-WHERE age > 30;
-
--- order
-SELECT *
-FROM employees
-ORDER BY age DESC;
-
--- group
-SELECT age, COUNT(*) AS total
-FROM employees
-GROUP BY age
-HAVING COUNT(*) > 1;
-``` | ```sql
--- basic select
-SELECT first_name, last_name
-FROM employees;
-
--- filter
-SELECT *
-FROM employees
-WHERE age > 30;
-
--- order
-SELECT *
-FROM employees
-ORDER BY age DESC;
-
--- group
-SELECT age, COUNT(*) AS total
-FROM employees
-GROUP BY age
-HAVING COUNT(*) > 1;
-``` |
-
-(From PDF Querying + GROUP BY + HAVING) :contentReference[oaicite:3]{index=3}
-
----
-
-## 6. Joins
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- inner join
-SELECT e.first_name, d.department_name
-FROM employees e
-INNER JOIN departments d
-  ON e.department_id = d.id;
-
--- left join
-SELECT e.first_name, d.department_name
-FROM employees e
-LEFT JOIN departments d
-  ON e.department_id = d.id;
-``` | ```sql
--- inner join
-SELECT e.first_name, d.department_name
-FROM employees e
-INNER JOIN departments d
-  ON e.department_id = d.id;
-
--- left join
-SELECT e.first_name, d.department_name
-FROM employees e
-LEFT JOIN departments d
-  ON e.department_id = d.id;
-``` |
-
-📌 Note: SQL Server supports `FULL OUTER JOIN` directly; MySQL emulates it with `UNION` (like in PDF). :contentReference[oaicite:4]{index=4}
-
----
-
-## 7. String Functions
-
-| MySQL (typical) | SQL Server (T-SQL) |
-|-----------------|--------------------|
-| ```sql
-SELECT
-  CONCAT(first_name, ' ', last_name) AS full_name,
-  UPPER(first_name) AS upper_name,
-  LOWER(last_name) AS lower_name,
-  LENGTH(first_name) AS name_len
-FROM employees;
-``` | ```sql
-SELECT
-  CONCAT(first_name, ' ', last_name) AS full_name,
-  UPPER(first_name) AS upper_name,
-  LOWER(last_name) AS lower_name,
-  LEN(first_name) AS name_len
-FROM employees;
-``` |
-
-📝 Differences:
-- MySQL → `LENGTH()` / `CHAR_LENGTH()`
-- SQL Server → `LEN()`
-- Common ones from PDF: `CONCAT`, `SUBSTRING`, `REPLACE`, `TRIM` :contentReference[oaicite:5]{index=5}
-
----
-
-## 8. Date & Time
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
-SELECT
-  CURRENT_DATE()      AS today,
-  CURRENT_TIME()      AS now_time,
-  CURRENT_TIMESTAMP() AS now_ts,
-  DATE_ADD('2025-10-30', INTERVAL 1 DAY) AS t_plus_1,
-  DATEDIFF('2025-10-30', '2025-10-29')   AS diff_days;
-``` | ```sql
-SELECT
-  CAST(GETDATE() AS date)       AS today,
-  CAST(GETDATE() AS time)       AS now_time,
-  GETDATE()                     AS now_dt,
-  DATEADD(DAY, 1, '2025-10-30') AS t_plus_1,
-  DATEDIFF(DAY, '2025-10-29', '2025-10-30') AS diff_days;
-``` |
-
-(From PDF date/time section, adapted to SQL Server) :contentReference[oaicite:6]{index=6}
-
----
-
-## 9. Conditional Logic
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
-SELECT
-  total_amount,
-  CASE
-    WHEN total_amount > 1000 THEN 'High'
-    WHEN total_amount > 500  THEN 'Medium'
-    ELSE 'Low'
-  END AS order_status,
-  IF(total_amount > 500, 'VIP', 'REGULAR') AS cust_type
-FROM orders;
-``` | ```sql
-SELECT
-  total_amount,
-  CASE
-    WHEN total_amount > 1000 THEN 'High'
-    WHEN total_amount > 500  THEN 'Medium'
-    ELSE 'Low'
-  END AS order_status,
-  IIF(total_amount > 500, 'VIP', 'REGULAR') AS cust_type
-FROM orders;
-``` |
-
-📌 PDF shows `CASE`, `IF()`, `COALESCE()` – in SQL Server `IIF()` plays a similar role. :contentReference[oaicite:7]{index=7}
-
----
-
-## 10. Transactions
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
-START TRANSACTION;
-
-INSERT INTO employees (first_name, age)
-VALUES ('Alice', 30);
-
-UPDATE products
-SET price = 25
-WHERE category = 'Electronics';
-
-COMMIT;
--- or
-ROLLBACK;
-``` | ```sql
-BEGIN TRANSACTION;
-
-INSERT INTO employees (first_name, age)
-VALUES ('Alice', 30);
-
-UPDATE products
-SET price = 25
-WHERE category = 'Electronics';
-
-COMMIT;
--- or
-ROLLBACK;
-``` |
-
-(From PDF transaction control) :contentReference[oaicite:8]{index=8}
-
----
-
-## 11. Users / Permissions (basic)
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- create user (simple)
-CREATE USER 'islam'@'%' IDENTIFIED BY 'StrongPass123';
-
--- grant
-GRANT SELECT, INSERT
-ON school.*
-TO 'islam'@'%';
-
-FLUSH PRIVILEGES;
-``` | ```sql
--- create login
-CREATE LOGIN islam
-WITH PASSWORD = 'StrongPass123';
-
--- create user in db
-USE school;
-CREATE USER islam FOR LOGIN islam;
-
--- grant
-GRANT SELECT, INSERT
-ON dbo.employees TO islam;
-``` |
-
-PDF shows generic `GRANT` / `REVOKE` which maps to both. :contentReference[oaicite:9]{index=9}
-
----
-
-## 12. Show Tables / Describe Table
-
-| MySQL | SQL Server |
-|-------|------------|
-| ```sql
--- show all tables
-SHOW TABLES;
-
--- describe structure
-DESCRIBE employees;
-``` | ```sql
--- list tables
-SELECT * FROM INFORMATION_SCHEMA.TABLES
-WHERE TABLE_TYPE = 'BASE TABLE';
-
--- describe columns
-EXEC sp_help 'dbo.employees';
--- or
-SELECT *
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_NAME = 'employees';
-``` |
-
----
-
-## 13. Extras for GitHub
-
-- ✅ Add sample dump files: `mysql/init.sql`, `sqlserver/init.sql`
-- ✅ Add Docker compose if you want to run both
-- ✅ Add screenshot of SSMS + MySQL Workbench
-
----
-
-## 14. Quick Reference (from PDF)
-
-- **DML**: `SELECT`, `INSERT`, `UPDATE`, `DELETE` :contentReference[oaicite:10]{index=10}
-- **DDL**: `CREATE`, `ALTER`, `DROP`, `TRUNCATE` :contentReference[oaicite:11]{index=11}
-- **JOINS**: `INNER`, `LEFT`, `RIGHT`, `FULL` (MySQL via `UNION`) :contentReference[oaicite:12]{index=12}
-- **AGG**: `COUNT`, `SUM`, `AVG`, `MIN`, `MAX` :contentReference[oaicite:13]{index=13}
-- **TRANSACTIONS**: `COMMIT`, `ROLLBACK`, `SAVEPOINT` :contentReference[oaicite:14]{index=14}
-
----
-
-## 15. Repo Structure (suggested)
-
-```text
-.
-├── README.md          # this file
-├── mysql
-│   ├── init.sql       # create db + tables + sample data
-│   └── queries.sql    # practice queries
-└── sqlserver
-    ├── init.sql
-    └── queries.sql
 
