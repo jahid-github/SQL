@@ -23,6 +23,15 @@ CREATE TABLE Product(
 -- Create a custom schema
 CREATE SCHEMA test_schema;
 
+---
+
+
+## ⚙️ 2. DDL (Data Definition Language)
+
+
+---
+
+```sql
 -- Create Table under test_schema
 CREATE TABLE test_schema.Product(
     product_id INT,
@@ -104,3 +113,16 @@ SELECT *
 FROM AdventureWorks2014.Production.Product p
 WHERE p.StandardCost = 0;
 */
+
+-- Drop the destination table
+DROP TABLE TEST_DB.test_schema.ProductAdvWDB2014;
+
+-- Insert into an existing table from another
+INSERT INTO TEST_DB.test_schema.Product_1
+SELECT *
+FROM TEST_DB.test_schema.Product
+WHERE product_id > 1;
+
+-- Display results
+SELECT *
+FROM TEST_DB.test_schema.Product_1;
