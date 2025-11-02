@@ -23,8 +23,6 @@ CREATE TABLE Product(
 -- Create a custom schema
 CREATE SCHEMA test_schema;
 
----
-```sql
 -- Create Table under test_schema
 CREATE TABLE test_schema.Product(
     product_id INT,
