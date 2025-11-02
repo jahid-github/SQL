@@ -1,4 +1,4 @@
-# SQL Practice & Cheat Sheet (MySQL & PostgreSQL)
+# SQL Practice & Cheat Sheet (MySQL, PostgreSQL, SQL Server)
 
 *SQL is a programming language used to interact with relational databases.*
 *It is used to perform CRUD operations: Create, Read, Update, and Delete.*
