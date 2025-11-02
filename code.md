@@ -22,3 +22,22 @@ CREATE TABLE Product(
 
 -- Create a custom schema
 CREATE SCHEMA test_schema;
+
+---
+```sql
+-- Create Table under test_schema
+CREATE TABLE test_schema.Product(
+    product_id INT,
+    product_name VARCHAR(100),
+    price DECIMAL
+);
+
+-- Alter Table: add a new column
+ALTER TABLE test_schema.Product 
+ADD quantity FLOAT;
+
+-- Truncate Table: remove all rows/data
+TRUNCATE TABLE test_schema.Product;
+
+-- Drop Table: permanently remove the table
+DROP TABLE test_schema.Product;
